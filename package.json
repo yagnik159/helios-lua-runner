@@ -1,7 +1,7 @@
 {
-  "name": "helios-lua-runner",
-  "displayName": "helios-lua-runner",
-  "description": "",
+  "name": "ble-lua-runner",
+  "displayName": "BLE Lua Runner",
+  "description": "VSCode extension for running Lua scripts on BLE devices",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.93.0"
@@ -9,25 +9,43 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:lua"
+  ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "helios-lua-runner.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "ble-lua-extension.toggleConnection",
+        "title": "BLE: Toggle Device Connection"
+      },
+      {
+        "command": "ble-lua-extension.play",
+        "title": "BLE: Run Lua Script"
+      },
+      {
+        "command": "ble-lua-extension.stop",
+        "title": "BLE: Stop Lua Script"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "vscode-test"
+    "test": "node ./test/runTest.js"
   },
   "devDependencies": {
     "@types/vscode": "^1.93.0",
-    "@types/mocha": "^10.0.8",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "20.x",
-    "eslint": "^9.11.1",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "dependencies": {
+    "noble-winrt": "^0.1.1"
   }
 }
